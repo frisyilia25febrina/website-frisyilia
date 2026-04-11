@@ -577,15 +577,8 @@ if (passwordForm) {
     passwordForm.addEventListener('submit', (e) => {
         e.preventDefault();
         
-        const oldPassword = document.getElementById('oldPassword').value;
         const newPassword = document.getElementById('newPassword').value;
         const confirmPassword = document.getElementById('confirmPassword').value;
-        
-        // Validate old password
-        if (oldPassword !== userPassword) {
-            showPasswordMessage('Password lama yang Anda masukkan salah!', 'error');
-            return;
-        }
         
         // Validate new password length
         if (newPassword.length < 6) {
@@ -599,17 +592,11 @@ if (passwordForm) {
             return;
         }
         
-        // Validate not same as old password
-        if (newPassword === oldPassword) {
-            showPasswordMessage('Password baru tidak boleh sama dengan password lama!', 'warning');
-            return;
-        }
-        
-        // Update password
+        // Update password directly
         userPassword = newPassword;
         localStorage.setItem('userPassword', userPassword);
         
-        showPasswordMessage('✓ Password berhasil diubah! Silakan login kembali dengan password baru.', 'success');
+        showPasswordMessage('✓ Password berhasil diubah!', 'success');
         
         // Reset form and close modal after 2 seconds
         setTimeout(() => {
@@ -625,6 +612,9 @@ function showPasswordMessage(message, type) {
 
 // ========== INITIALIZE ==========
 document.addEventListener('DOMContentLoaded', () => {
+    // Clear all password-related localStorage
+    localStorage.removeItem('userPassword');
+    
     // Force reload data dari localStorage
     tasksData = JSON.parse(localStorage.getItem('tasksData')) || initialTasksData;
     
@@ -647,6 +637,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!localStorage.getItem('tasksData')) {
         localStorage.setItem('tasksData', JSON.stringify(tasksData));
     }
+    
+    // Reset password to default every load
+    userPassword = '250208';
     
     renderTasks();
     renderTugasPage();
