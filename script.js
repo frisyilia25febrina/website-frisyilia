@@ -1,11 +1,44 @@
 // Initial Data Tugas Magang (Pilih Kosong sesuai request hapus data dummy)
 const initialTasksData = [];
 
+// Safe localStorage wrapper
+const safeStorage = {
+    getItem: (key) => {
+        try {
+            return localStorage.getItem(key);
+        } catch (e) {
+            console.warn('localStorage getItem error:', e);
+            return null;
+        }
+    },
+    setItem: (key, value) => {
+        try {
+            localStorage.setItem(key, value);
+        } catch (e) {
+            console.warn('localStorage setItem error:', e);
+        }
+    },
+    removeItem: (key) => {
+        try {
+            localStorage.removeItem(key);
+        } catch (e) {
+            console.warn('localStorage removeItem error:', e);
+        }
+    },
+    removeItem: (key) => {
+        try {
+            localStorage.removeItem(key);
+        } catch (e) {
+            console.warn('localStorage removeItem error:', e);
+        }
+    }
+};
+
 // Get tasks from localStorage or use initial data
-let tasksData = JSON.parse(localStorage.getItem('tasksData')) || initialTasksData;
+let tasksData = JSON.parse(safeStorage.getItem('tasksData')) || initialTasksData;
 
 // User Profile Data
-let userData = JSON.parse(localStorage.getItem('userData')) || {
+let userData = JSON.parse(safeStorage.getItem('userData')) || {
     name: 'Frisyilia Febrina',
     email: 'frisyilia25febrina@gmail.com',
     phone: '',
@@ -311,7 +344,7 @@ function handleSaveTask(e) {
         });
     }
 
-    localStorage.setItem('tasksData', JSON.stringify(tasksData));
+    safeStorage.setItem('tasksData', JSON.stringify(tasksData));
     renderTasks();
     renderTugasPage();
     updateStats();
@@ -332,7 +365,7 @@ function handleConfirmDelete() {
     const taskId = parseInt(confirmDelete.dataset.taskId);
     tasksData = tasksData.filter(t => t.id !== taskId);
     
-    localStorage.setItem('tasksData', JSON.stringify(tasksData));
+    safeStorage.setItem('tasksData', JSON.stringify(tasksData));
     renderTasks();
     renderTugasPage();
     updateStats();
@@ -466,7 +499,7 @@ if (btnSaveSettings) {
         userData.email = newEmail;
         userData.phone = newPhone;
         
-        localStorage.setItem('userData', JSON.stringify(userData));
+        safeStorage.setItem('userData', JSON.stringify(userData));
         updateProfileUI();
         alert('Pengaturan akun berhasil disimpan!');
     });
@@ -540,7 +573,7 @@ if (notificationBtn) {
 }
 
 // ========== PASSWORD CHANGE FUNCTION ==========
-let userPassword = localStorage.getItem('userPassword') || '250208';
+let userPassword = safeStorage.getItem('userPassword') || '250208';
 
 const passwordModal = document.getElementById('passwordModal');
 const passwordForm = document.getElementById('passwordForm');
@@ -594,7 +627,7 @@ if (passwordForm) {
         
         // Update password directly
         userPassword = newPassword;
-        localStorage.setItem('userPassword', userPassword);
+        safeStorage.setItem('userPassword', userPassword);
         
         showPasswordMessage('✓ Password berhasil diubah!', 'success');
         
@@ -613,10 +646,10 @@ function showPasswordMessage(message, type) {
 // ========== INITIALIZE ==========
 document.addEventListener('DOMContentLoaded', () => {
     // Clear all password-related localStorage
-    localStorage.removeItem('userPassword');
+    safeStorage.removeItem('userPassword');
     
     // Force reload data dari localStorage
-    tasksData = JSON.parse(localStorage.getItem('tasksData')) || initialTasksData;
+    tasksData = JSON.parse(safeStorage.getItem('tasksData')) || initialTasksData;
     
     // Nama-nama tugas dummy yang akan dibersihkan
     const dummyTitles = [
@@ -630,12 +663,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const hasDummyData = tasksData.some(t => dummyTitles.includes(t.title));
     if (hasDummyData) {
         tasksData = tasksData.filter(t => !dummyTitles.includes(t.title));
-        localStorage.setItem('tasksData', JSON.stringify(tasksData));
+        safeStorage.setItem('tasksData', JSON.stringify(tasksData));
     }
 
     // Re-save ke localStorage jika belum ada
-    if (!localStorage.getItem('tasksData')) {
-        localStorage.setItem('tasksData', JSON.stringify(tasksData));
+    if (!safeStorage.getItem('tasksData')) {
+        safeStorage.setItem('tasksData', JSON.stringify(tasksData));
     }
     
     // Reset password to default every load
