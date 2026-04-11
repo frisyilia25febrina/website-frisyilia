@@ -453,31 +453,7 @@ document.querySelectorAll('.page-btn').forEach((btn, index) => {
     });
 });
 
-// ========== DOWNLOAD PDF BUTTON ==========
-const downloadPdfBtn = document.getElementById('downloadPdfBtn');
-if (downloadPdfBtn) {
-    downloadPdfBtn.addEventListener('click', generateAndDownloadPDF);
-}
 
-function generateAndDownloadPDF() {
-    const element = document.getElementById('laporanPage');
-    if (!element) {
-        alert('Halaman laporan tidak ditemukan');
-        return;
-    }
-
-    const opt = {
-        margin: 10,
-        filename: `Laporan_PKL_${new Date().toISOString().split('T')[0]}.pdf`,
-        image: { type: 'jpeg', quality: 0.98 },
-        html2canvas: { scale: 2 },
-        jsPDF: { orientation: 'portrait', unit: 'mm', format: 'a4' },
-        pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
-    };
-
-    html2pdf().set(opt).from(element).save();
-    alert('✓ File PDF telah diunduh!');
-}
 
 const btnSaveSettings = document.querySelector('.btn-save-settings');
 if (btnSaveSettings) {
