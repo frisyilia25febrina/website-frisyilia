@@ -540,7 +540,7 @@ if (notificationBtn) {
 }
 
 // ========== PASSWORD CHANGE FUNCTION ==========
-let userPassword = localStorage.getItem('userPassword') || 'password123';
+let userPassword = localStorage.getItem('userPassword') || '250208';
 
 const passwordModal = document.getElementById('passwordModal');
 const passwordForm = document.getElementById('passwordForm');
