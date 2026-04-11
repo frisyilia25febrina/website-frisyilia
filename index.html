@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard PKL - Portal Tugas Magang</title>
     
     <!-- Google Fonts -->
@@ -11,6 +11,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     
     <link rel="stylesheet" href="style.css">
+    
+    <!-- jsPDF untuk generate PDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 </head>
 <body>
     <!-- Background Animated Shapes -->
@@ -25,7 +28,7 @@
             <div class="nav-right">
                 <button class="notification-btn">🔔</button>
                 <button class="profile-btn" id="profileBtn">
-                    <img src="Karakter.jpg" alt="Profile" class="nav-karakter">
+                    <img src="Karakter.jpg" alt="Profile" class="nav-avatar">
                     <span>Profil</span>
                 </button>
             </div>
@@ -52,8 +55,8 @@
                         <h1>Halo, <span id="userName">Frisyilia Febrina</span>! 👋</h1>
                         <p>Selamat datang di Portal Manajemen Magang. Kelola tugas dan progress magang Anda dengan mudah.</p>
                     </div>
-                    <div class="welcome-karakter.jpg">
-                        <img src="karakter.jpg" alt="karakter.jpg">
+                    <div class="welcome-avatar">
+                        <img src="Karakter.jpg" alt="Avatar">
                     </div>
                 </div>
 
@@ -131,7 +134,7 @@
                             <p>Ringkasan dan analisis progress magang Anda</p>
                         </div>
                         <div class="report-user-info">
-                            <img src="karakter.png" alt="Report User" class="report-user-karakter.jpg">
+                            <img src="Karakter.jpg" alt="Report User" class="report-user-avatar">
                             <div>
                                 <h4 style="margin:0; font-size: 0.95rem;">Frisyilia Febrina</h4>
                                 <span style="font-size: 0.75rem; color: var(--text-muted);">Internship Dashboard</span>
@@ -188,7 +191,10 @@
                         </div>
                     </div>
 
-
+                    <!-- Download Actions -->
+                    <!-- <div class="report-actions">
+                        <button class="btn-download" id="downloadPdfBtn">📄 Download PDF</button>
+                    </div> -->
                 </div>
             </div>
 
@@ -203,7 +209,7 @@
                     <div class="settings-card">
                         <h3>Informasi Akun</h3>
                         <div class="setting-profile">
-                            <img src="Karakter.jpg" alt="Profile Large" class="setting-karakter.jpg">
+                            <img src="Karakter.jpg" alt="Profile Large" class="setting-avatar">
                             <div class="setting-profile-info">
                                 <h4>Frisyilia Febrina</h4>
                                 <p>frisyilia25febrina@gmail.com</p>
