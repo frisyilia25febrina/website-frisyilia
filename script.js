@@ -237,10 +237,10 @@ function updateLaporanPage() {
                 const statusColor = task.status === 'selesai' ? '#28a745' : 
                                    task.status === 'pending' ? '#ffc107' : '#dc3545';
                 html += `<tr style="border-bottom: 1px solid #ddd;">
-                    <td style="padding: 10px; border: 1px solid #ddd; text-align: center; font-size: 18px;">${task.icon}</td>
-                    <td style="padding: 10px; border: 1px solid #ddd; font-weight: bold;">${task.title}</td>
-                    <td style="padding: 10px; border: 1px solid #ddd;">${task.description}</td>
-                    <td style="padding: 10px; border: 1px solid #ddd; text-align: center;">
+                    <td data-label="Icon" style="padding: 10px; border: 1px solid #ddd; text-align: center; font-size: 18px;">${task.icon}</td>
+                    <td data-label="Judul Tugas" style="padding: 10px; border: 1px solid #ddd; font-weight: bold;">${task.title}</td>
+                    <td data-label="Deskripsi" style="padding: 10px; border: 1px solid #ddd;">${task.description}</td>
+                    <td data-label="Status" style="padding: 10px; border: 1px solid #ddd; text-align: center;">
                         <span style="background-color: ${statusColor}; color: white; padding: 5px 10px; border-radius: 4px; font-size: 12px; font-weight: bold;">
                             ${task.status.toUpperCase()}
                         </span>
