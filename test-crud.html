@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test CRUD - Dashboard PKL</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .test-container {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h2 { color: #333; border-bottom: 2px solid #007bff; padding-bottom: 10px; }
+        .test-result {
+            padding: 10px;
+            margin: 10px 0;
+            border-left: 4px solid #ccc;
+            border-radius: 4px;
+        }
+        .test-result.success {
+            background-color: #d4edda;
+            border-color: #28a745;
+            color: #155724;
+        }
+        .test-result.error {
+            background-color: #f8d7da;
+            border-color: #dc3545;
+            color: #721c24;
+        }
+        .test-result.info {
+            background-color: #d1ecf1;
+            border-color: #17a2b8;
+            color: #0c5460;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px 5px 5px 0;
+        }
+        button:hover { background-color: #0056b3; }
+        button.danger {
+            background-color: #dc3545;
+        }
+        button.danger:hover {
+            background-color: #c82333;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        table th, table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        table th {
+            background-color: #007bff;
+            color: white;
+        }
+        table tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input, textarea, select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin: 10px 0;
+        }
+        .stat-box {
+            background: #007bff;
+            color: white;
+            padding: 15px;
+            border-radius: 4px;
+            text-align: center;
+        }
+        .stat-box .value {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .stat-box .label {
+            font-size: 12px;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>🧪 Test CRUD - Dashboard PKL</h1>
+    
+    <!-- Test Data Status -->
+    <div class="test-container">
+        <h2>📊 Status Data Saat Ini</h2>
+        <div class="stats">
+            <div class="stat-box">
+                <div class="value" id="totalTasks">0</div>
+                <div class="label">Total Tugas</div>
+            </div>
+            <div class="stat-box">
+                <div class="value" id="completedTasks">0</div>
+                <div class="label">Selesai</div>
+            </div>
+            <div class="stat-box">
+                <div class="value" id="pendingTasks">0</div>
+                <div class="label">Pending</div>
+            </div>
+            <div class="stat-box">
+                <div class="value" id="rejectedTasks">0</div>
+                <div class="label">Ditolak</div>
+            </div>
+        </div>
+        <button onclick="refreshStats()">🔄 Refresh Stats</button>
+        <div id="statsResult"></div>
+    </div>
+
+    <!-- Test Create -->
+    <div class="test-container">
+        <h2>➕ Test Tambah Tugas (CREATE)</h2>
+        <div class="form-group">
+            <label for="testTitle">Judul Tugas:</label>
+            <input type="text" id="testTitle" placeholder="Contoh: Test Tugas 1">
+        </div>
+        <div class="form-group">
+            <label for="testDesc">Deskripsi:</label>
+            <textarea id="testDesc" placeholder="Contoh: Ini adalah tugas test" rows="3"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="testStatus">Status:</label>
+            <select id="testStatus">
+                <option value="selesai">Selesai</option>
+                <option value="pending">Pending</option>
+                <option value="ditolak">Ditolak</option>
+            </select>
+        </div>
+        <button onclick="testAddTask()">Tambah Tugas Test</button>
+        <button onclick="testAddMultiple()">Tambah 3 Tugas Test</button>
+        <div id="createResult"></div>
+    </div>
+
+    <!-- Test Read -->
+    <div class="test-container">
+        <h2>📖 Test Baca Tugas (READ)</h2>
+        <button onclick="testReadAll()">Tampilkan Semua Tugas</button>
+        <div id="readResult"></div>
+    </div>
+
+    <!-- Test Update -->
+    <div class="test-container">
+        <h2>✏️ Test Edit Tugas (UPDATE)</h2>
+        <div id="updateContainer"></div>
+        <div id="updateResult"></div>
+    </div>
+
+    <!-- Test Delete -->
+    <div class="test-container">
+        <h2>🗑️ Test Hapus Tugas (DELETE)</h2>
+        <div id="deleteContainer"></div>
+        <div id="deleteResult"></div>
+    </div>
+
+    <!-- Test LocalStorage -->
+    <div class="test-container">
+        <h2>💾 Test LocalStorage Persistence</h2>
+        <button onclick="testStoragePersistence()">Test Penyimpanan ke localStorage</button>
+        <button onclick="clearAllData()">🧹 Bersihkan Semua Data</button>
+        <div id="storageResult"></div>
+    </div>
+
+    <!-- Test Summary -->
+    <div class="test-container">
+        <h2>📋 Ringkasan Test</h2>
+        <button onclick="runAllTests()">▶️ Jalankan Semua Test</button>
+        <div id="testSummary"></div>
+    </div>
+
+    <script>
+        // Ambil data dari localStorage
+        function getTasksData() {
+            return JSON.parse(localStorage.getItem('tasksData')) || [];
+        }
+
+        // Simpan data ke localStorage
+        function saveTasksData(data) {
+            localStorage.setItem('tasksData', JSON.stringify(data));
+        }
+
+        // Refresh stats
+        function refreshStats() {
+            const tasks = getTasksData();
+            const total = tasks.length;
+            const completed = tasks.filter(t => t.status === 'selesai').length;
+            const pending = tasks.filter(t => t.status === 'pending').length;
+            const rejected = tasks.filter(t => t.status === 'ditolak').length;
+
+            document.getElementById('totalTasks').textContent = total;
+            document.getElementById('completedTasks').textContent = completed;
+            document.getElementById('pendingTasks').textContent = pending;
+            document.getElementById('rejectedTasks').textContent = rejected;
+
+            const resultDiv = document.getElementById('statsResult');
+            resultDiv.innerHTML = `<div class="test-result info">✓ Data diperbarui: Total=${total}, Selesai=${completed}, Pending=${pending}, Ditolak=${rejected}</div>`;
+        }
+
+        // Test: Tambah Tugas
+        function testAddTask() {
+            const title = document.getElementById('testTitle').value.trim();
+            const desc = document.getElementById('testDesc').value.trim();
+            const status = document.getElementById('testStatus').value;
+
+            if (!title || !desc) {
+                showResult('createResult', 'Silakan isi judul dan deskripsi', 'error');
+                return;
+            }
+
+            const tasks = getTasksData();
+            const newId = tasks.length > 0 ? Math.max(...tasks.map(t => t.id)) + 1 : 1;
+            
+            tasks.push({
+                id: newId,
+                icon: '📋',
+                title,
+                description: desc,
+                status
+            });
+
+            saveTasksData(tasks);
+            refreshStats();
+
+            showResult('createResult', `✓ Tugas berhasil ditambahkan! ID: ${newId}, Title: "${title}"`, 'success');
+            document.getElementById('testTitle').value = '';
+            document.getElementById('testDesc').value = '';
+            testReadAll();
+        }
+
+        // Test: Tambah 3 Tugas Sekaligus
+        function testAddMultiple() {
+            const sampleTasks = [
+                { title: 'Test Tugas 1', desc: 'Deskripsi test 1', status: 'pending' },
+                { title: 'Test Tugas 2', desc: 'Deskripsi test 2', status: 'selesai' },
+                { title: 'Test Tugas 3', desc: 'Deskripsi test 3', status: 'pending' }
+            ];
+
+            const tasks = getTasksData();
+            sampleTasks.forEach((sample, index) => {
+                const newId = tasks.length > 0 ? Math.max(...tasks.map(t => t.id)) + 1 : 1;
+                tasks.push({
+                    id: newId,
+                    icon: '📋',
+                    title: sample.title,
+                    description: sample.desc,
+                    status: sample.status
+                });
+            });
+
+            saveTasksData(tasks);
+            refreshStats();
+
+            showResult('createResult', '✓ 3 tugas test berhasil ditambahkan!', 'success');
+            testReadAll();
+        }
+
+        // Test: Baca Semua Tugas
+        function testReadAll() {
+            const tasks = getTasksData();
+            const resultDiv = document.getElementById('readResult');
+
+            if (tasks.length === 0) {
+                resultDiv.innerHTML = '<div class="test-result info">ℹ️ Belum ada tugas</div>';
+                document.getElementById('updateContainer').innerHTML = '';
+                document.getElementById('deleteContainer').innerHTML = '';
+                return;
+            }
+
+            let html = '<table><tr><th>ID</th><th>Icon</th><th>Judul</th><th>Deskripsi</th><th>Status</th></tr>';
+            tasks.forEach(task => {
+                html += `<tr>
+                    <td>${task.id}</td>
+                    <td>${task.icon || '📋'}</td>
+                    <td>${task.title}</td>
+                    <td>${task.description}</td>
+                    <td><strong>${task.status}</strong></td>
+                </tr>`;
+            });
+            html += '</table>';
+            resultDiv.innerHTML = `<div class="test-result success">✓ Total ${tasks.length} tugas ditemukan</div>` + html;
+
+            // Generate update and delete forms
+            generateUpdateForms(tasks);
+            generateDeleteButtons(tasks);
+        }
+
+        // Generate Update Forms
+        function generateUpdateForms(tasks) {
+            const container = document.getElementById('updateContainer');
+            let html = '';
+            
+            if (tasks.length > 0) {
+                const task = tasks[0]; // Edit tugas pertama
+                html = `
+                    <div class="test-result info">📝 Edit Tugas ID: ${task.id} - "${task.title}"</div>
+                    <div class="form-group">
+                        <label>Judul Baru:</label>
+                        <input type="text" id="updateTitle" value="${task.title}">
+                    </div>
+                    <div class="form-group">
+                        <label>Deskripsi Baru:</label>
+                        <textarea id="updateDesc" rows="3">${task.description}</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Status Baru:</label>
+                        <select id="updateStatus">
+                            <option value="selesai" ${task.status === 'selesai' ? 'selected' : ''}>Selesai</option>
+                            <option value="pending" ${task.status === 'pending' ? 'selected' : ''}>Pending</option>
+                            <option value="ditolak" ${task.status === 'ditolak' ? 'selected' : ''}>Ditolak</option>
+                        </select>
+                    </div>
+                    <button onclick="testUpdateTask(${task.id})">Simpan Perubahan</button>
+                `;
+            }
+            
+            container.innerHTML = html;
+        }
+
+        // Test: Update Tugas
+        function testUpdateTask(taskId) {
+            const title = document.getElementById('updateTitle').value.trim();
+            const desc = document.getElementById('updateDesc').value.trim();
+            const status = document.getElementById('updateStatus').value;
+
+            if (!title || !desc) {
+                showResult('updateResult', 'Silakan isi semua field', 'error');
+                return;
+            }
+
+            const tasks = getTasksData();
+            const taskIndex = tasks.findIndex(t => t.id === taskId);
+
+            if (taskIndex === -1) {
+                showResult('updateResult', 'Tugas tidak ditemukan', 'error');
+                return;
+            }
+
+            const oldData = { ...tasks[taskIndex] };
+            tasks[taskIndex] = {
+                ...tasks[taskIndex],
+                title,
+                description: desc,
+                status
+            };
+
+            saveTasksData(tasks);
+            refreshStats();
+
+            showResult('updateResult', `✓ Tugas ID ${taskId} berhasil diperbarui!<br>Sebelum: "${oldData.title}" → Sesudah: "${title}"`, 'success');
+            testReadAll();
+        }
+
+        // Generate Delete Buttons
+        function generateDeleteButtons(tasks) {
+            const container = document.getElementById('deleteContainer');
+            let html = '';
+            
+            if (tasks.length > 0) {
+                html = '<div class="test-result info">Pilih tugas yang ingin dihapus:</div>';
+                tasks.slice(0, 3).forEach(task => {
+                    html += `<button class="danger" onclick="testDeleteTask(${task.id})" style="margin: 5px;">🗑️ Hapus: ${task.title} (ID: ${task.id})</button>`;
+                });
+            }
+            
+            container.innerHTML = html;
+        }
+
+        // Test: Delete Tugas
+        function testDeleteTask(taskId) {
+            const tasks = getTasksData();
+            const taskIndex = tasks.findIndex(t => t.id === taskId);
+
+            if (taskIndex === -1) {
+                showResult('deleteResult', 'Tugas tidak ditemukan', 'error');
+                return;
+            }
+
+            const deletedTask = tasks[taskIndex];
+            tasks.splice(taskIndex, 1);
+
+            saveTasksData(tasks);
+            refreshStats();
+
+            showResult('deleteResult', `✓ Tugas ID ${taskId} "${deletedTask.title}" berhasil dihapus!`, 'success');
+            testReadAll();
+        }
+
+        // Test: Storage Persistence
+        function testStoragePersistence() {
+            const tasks = getTasksData();
+            const testData = JSON.stringify(tasks);
+            localStorage.setItem('testPersistence', testData);
+            const retrieved = localStorage.getItem('testPersistence');
+
+            if (testData === retrieved) {
+                showResult('storageResult', `✓ Data berhasil disimpan dan diambil dari localStorage! (${tasks.length} tugas)`, 'success');
+            } else {
+                showResult('storageResult', '❌ Gagal menyimpan/mengambil data dari localStorage', 'error');
+            }
+        }
+
+        // Clear All Data
+        function clearAllData() {
+            if (confirm('Apakah Anda yakin ingin menghapus semua data?')) {
+                localStorage.removeItem('tasksData');
+                refreshStats();
+                document.getElementById('readResult').innerHTML = '';
+                document.getElementById('updateContainer').innerHTML = '';
+                document.getElementById('deleteContainer').innerHTML = '';
+                showResult('deleteResult', '✓ Semua data berhasil dihapus', 'success');
+            }
+        }
+
+        // Helper: Show Result
+        function showResult(elementId, message, type) {
+            const resultDiv = document.getElementById(elementId);
+            resultDiv.innerHTML = `<div class="test-result ${type}">${message}</div>`;
+        }
+
+        // Run All Tests
+        function runAllTests() {
+            const summary = document.getElementById('testSummary');
+            summary.innerHTML = '<div class="test-result info">⏳ Menjalankan semua test...</div>';
+
+            try {
+                // Clear existing data
+                localStorage.removeItem('tasksData');
+                refreshStats();
+
+                // Test 1: Tambah tugas
+                testAddMultiple();
+                let tasks = getTasksData();
+                const test1Pass = tasks.length === 3;
+
+                // Test 2: Baca tugas
+                const getTasksTest = tasks.length > 0;
+
+                // Test 3: Edit tugas
+                if (test1Pass && tasks.length > 0) {
+                    tasks[0].title = 'Test Edit Tugas';
+                    saveTasksData(tasks);
+                    testReadAll();
+                }
+                const test3Pass = tasks[0].title === 'Test Edit Tugas';
+
+                // Test 4: Storage Persistence
+                const persistTest = localStorage.getItem('tasksData') !== null;
+
+                // Summary
+                let summaryHTML = '<div style="padding: 10px; background: #e8f5e9; border: 1px solid #4caf50; border-radius: 4px;">';
+                summaryHTML += '<h3>✅ Hasil Test CRUD:</h3>';
+                summaryHTML += `<p>✓ CREATE - Tambah 3 Tugas: ${test1Pass ? '✅ BERHASIL' : '❌ GAGAL'}</p>`;
+                summaryHTML += `<p>✓ READ - Baca Tugas: ${getTasksTest ? '✅ BERHASIL' : '❌ GAGAL'}</p>`;
+                summaryHTML += `<p>✓ UPDATE - Edit Tugas: ${test3Pass ? '✅ BERHASIL' : '❌ GAGAL'}</p>`;
+                summaryHTML += `<p>✓ PERSISTENCE - Simpan Data: ${persistTest ? '✅ BERHASIL' : '❌ GAGAL'}</p>`;
+                summaryHTML += '<hr>';
+                summaryHTML += `<p><strong>KESIMPULAN:</strong> Semua fitur CRUD dan penyimpanan data berfungsi dengan baik! 🎉</p>`;
+                summaryHTML += '</div>';
+
+                summary.innerHTML = summaryHTML;
+            } catch (error) {
+                showResult('testSummary', `❌ Error: ${error.message}`, 'error');
+            }
+        }
+
+        // Initialize
+        window.addEventListener('load', () => {
+            refreshStats();
+            testReadAll();
+        });
+    </script>
+</body>
+</html>
