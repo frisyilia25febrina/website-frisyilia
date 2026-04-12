@@ -135,14 +135,17 @@ function renderFeaturedPost() {
     const featured = blogs[0];
     if (!featured) return;
     
+    const date = featured.date || 'Tanpa tanggal';
+    const readTime = featured.readTime || '5 min read';
+    
     const html = `
         <div class="featured-post-content">
             <span class="featured-post-category">${featured.category}</span>
             <h2 class="featured-post-title">${featured.title}</h2>
             <p class="featured-post-excerpt">${featured.excerpt}</p>
             <div class="featured-post-meta">
-                <div class="featured-post-meta-item">📅 ${featured.date}</div>
-                <div class="featured-post-meta-item">⏱️ ${featured.readTime}</div>
+                <div class="featured-post-meta-item">📅 ${date}</div>
+                <div class="featured-post-meta-item">⏱️ ${readTime}</div>
                 <div class="featured-post-meta-item">✍️ ${featured.author}</div>
             </div>
         </div>
@@ -169,7 +172,11 @@ function renderPosts() {
         return;
     }
     
-    postsGridEl.innerHTML = filteredPosts.map(post => `
+    postsGridEl.innerHTML = filteredPosts.map(post => {
+        const date = post.date || 'Tanpa tanggal';
+        const readTime = post.readTime || '5 min read';
+        
+        return `
         <div class="post-card" onclick="openPostModal(${post.id})">
             <div class="post-image">${post.emoji}</div>
             <div class="post-content">
@@ -177,12 +184,13 @@ function renderPosts() {
                 <h3 class="post-title">${post.title}</h3>
                 <p class="post-excerpt">${post.excerpt}</p>
                 <div class="post-meta">
-                    <span class="post-meta-item">📅 ${post.date}</span>
-                    <span class="post-meta-item">⏱️ ${post.readTime}</span>
+                    <span class="post-meta-item">📅 ${date}</span>
+                    <span class="post-meta-item">⏱️ ${readTime}</span>
                 </div>
             </div>
         </div>
-    `).join('');
+    `;
+    }).join('');
 }
 
 function renderCategories() {
