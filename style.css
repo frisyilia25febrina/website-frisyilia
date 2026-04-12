@@ -899,10 +899,14 @@ body {
         width: 100%;
         justify-content: center;
         gap: 0.25rem;
+        flex-wrap: wrap;
     }
     
     .search-box {
-        display: none;
+        width: 85%;
+        padding: 0.35rem 0.7rem;
+        font-size: 0.65rem;
+        margin-top: 0.2rem;
     }
     
     .theme-toggle {
@@ -910,11 +914,11 @@ body {
     }
     
     .hero {
-        padding: 0.8rem 0.5rem;
+        padding: 0.6rem 0.4rem;
         flex-direction: column;
-        gap: 0.4rem;
-        margin-bottom: 0.6rem;
-        border-radius: 10px;
+        gap: 0.3rem;
+        margin-bottom: 0.4rem;
+        border-radius: 8px;
         min-height: auto;
         overflow: visible;
         width: 100%;
@@ -929,25 +933,25 @@ body {
     }
     
     .hero h1 {
-        font-size: 1.3rem;
-        margin-bottom: 0.2rem;
-        line-height: 1.1;
+        font-size: 1.25rem;
+        margin-bottom: 0.15rem;
+        line-height: 1.08;
         word-break: break-word;
         overflow-wrap: break-word;
         font-weight: 700;
     }
     
     .hero p {
-        font-size: 0.75rem;
-        margin-bottom: 0.4rem;
-        line-height: 1.2;
+        font-size: 0.7rem;
+        margin-bottom: 0.35rem;
+        line-height: 1.15;
         word-wrap: break-word;
         overflow-wrap: break-word;
     }
     
     .cta-button {
-        padding: 0.5rem 0.9rem;
-        font-size: 0.65rem;
+        padding: 0.45rem 0.8rem;
+        font-size: 0.6rem;
         white-space: nowrap;
         min-width: auto;
     }
