@@ -9,34 +9,39 @@ const blogs = [
         date: "12 April 2026",
         readTime: "5 min read",
         emoji: "🚀",
-        content: `<p>Web development adalah salah satu skill yang paling dicari di era digital ini. Jika kamu ingin memulai karir di bidang ini, artikel ini akan membantumu.</p>
+        content: `<p>Mari Bersama Kita Pelajari Membuat Topologi Star,Ring,Mesh,Bus</p>
         
         <h3>Langkah-langkah Awal</h3>
-        <p>Pertama, pahami konsep dasar HTML, CSS, dan JavaScript. Ketiga bahasa pemrograman ini adalah fondasi dari web development. Mulai dari yang paling dasar dan perlahan-lahan tingkatkan kemampuanmu.</p>
+        <p>Pertama, pahami konsep dasar.</p>
         
         <h3>Praktik Adalah Kunci</h3>
-        <p>Jangan hanya membaca teori. Langsung praktek membuat project kecil seperti halaman portofolio, blog sederhana, atau aplikasi todo list. Dengan praktek, kamu akan lebih memahami konsepnya.</p>`
+        <p>jangan hanya membaca teori. Langsung praktek membuat project kecil seperti membuat nya dengan applikasi cisco paket tracer dengan praktek, kamu akan lebih memahami konsepnya.</p>`
     },
     {
         id: 2,
-        title: "CSS Tips dan Tricks untuk Desain yang Memukau",
-        excerpt: "Pelajari teknik-teknik CSS advanced untuk membuat desain yang lebih menarik.",
-        category: "Design",
+        title: "Membuat Topologi Star",
+        excerpt: "Pelajari Topologi Star Dengan Cisco Paket Tracer.",
+        category: "Tutorial",
         author: "Frisyilia Febrina",
-        date: "10 April 2026",
+        date: "09 April 2026",
         readTime: "7 min read",
         emoji: "🎨",
-        content: `<p>CSS adalah alat yang powerful untuk membuat desain web yang memukau. Dengan menguasai CSS dengan baik, kamu bisa membuat desain yang tidak hanya indah tapi juga responsif.</p>
+        content: `<p>memakai 1 buah switch,1 buah server,dan 5 buah pc,lalu di sambungkan dari switch ke server menggunakan kabel straight dan dari switch ke seluruh pc yang ada juga disambungkan memakai kabel straight.lalu kita ke server lalu ke bagian desktop lalu ke ip configuration lalu kita isi ip nya memakai 192.168.10.1 subnet mask nya 255.255.255.0 setelah itu kita ke bagian services lalu ke dhcp service nya di on kan lalu default gateway nya kita isi 192.168.1.1 lalu kita save.kemudian setelah itu kita klik setiap pc lalu ke bagian desktop ke ip konfiguration kita pencet DHCP maka ip secara otomatis akan terisi sendiri kita lakukan ke seluruh pc yang ada.lalu setelah itu kita cek menggunakan pesan yang bentuk nya seperti amplop tertutup dari server ke setiap pc kalo status nya successful tanda nya berhasil lakukan ke seluruh pc yang ada atau bisa juga dengan klik server lalu ke desktop lalu ke command prompt lalu ketik ping ke ip address yang mau dituju misalkan 192.168.10.2 kalo status nya TTL artinya berhasil..</p>
         
-        <h3>Flexbox dan Grid</h3>
-        <p>Flexbox dan CSS Grid adalah dua fitur CSS yang sangat berguna untuk membuat layout yang kompleks dengan mudah. Keduanya sangat penting untuk dikuasai oleh setiap web developer modern.</p>
+        <h3>Kegunaan Topologi Star</h3>
+        <p>Topologi star adalah salah satu jenis topologi jaringan yang paling umum digunakan. Dalam topologi ini, semua perangkat terhubung ke satu titik pusat, yaitu switch atau hub.</p>
         
-        <h3>Animasi dan Transisi</h3>
-        <p>Dengan CSS animations dan transitions, kamu bisa membuat website yang lebih interaktif dan menarik tanpa perlu JavaScript.</p>`
+        <h3>Fungsi Fungsi Utama Topologi Star</h3>
+        <p>Fungsi utama topologi star adalah sebagai berikut:</p>
+        <ul>
+            <li>Memudahkan pengelolaan dan pemeliharaan jaringan</li>
+            <li>Meningkatkan kinerja jaringan dengan mengurangi konflik dan collision</li>
+            <li>Memungkinkan penambahan perangkat baru dengan mudah</li>
+        </ul>`
     },
     {
         id: 3,
-        title: "JavaScript ES6: Fitur-fitur Penting yang Perlu Diketahui",
+        title: "Membuat Topologi Ring",
         excerpt: "Pelajari fitur-fitur modern JavaScript yang akan membuat coding lebih efisien.",
         category: "Programming",
         author: "Frisyilia Febrina",

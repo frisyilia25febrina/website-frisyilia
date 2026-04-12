@@ -253,7 +253,7 @@ body {
 }
 
 .hero h1 {
-    font-size: max(1.5rem, min(6vw, 2.5rem));
+    font-size: 2.2rem;
     font-weight: 700;
     margin-bottom: 0.6rem;
     line-height: 1.15;
@@ -262,7 +262,7 @@ body {
 }
 
 .hero p {
-    font-size: max(0.9rem, min(3.5vw, 1.1rem));
+    font-size: 1rem;
     margin-bottom: 1rem;
     opacity: 0.95;
     word-wrap: break-word;
@@ -805,12 +805,12 @@ body {
     }
     
     .hero h1 {
-        font-size: max(1.4rem, min(5.5vw, 2rem));
+        font-size: 1.6rem;
         margin-bottom: 0.6rem;
     }
     
     .hero p {
-        font-size: max(0.9rem, min(3.5vw, 1rem));
+        font-size: 0.95rem;
         margin-bottom: 1rem;
     }
     
@@ -910,10 +910,10 @@ body {
     }
     
     .hero {
-        padding: 1rem 0.6rem;
+        padding: 0.8rem 0.5rem;
         flex-direction: column;
-        gap: 0.5rem;
-        margin-bottom: 0.8rem;
+        gap: 0.4rem;
+        margin-bottom: 0.6rem;
         border-radius: 10px;
         min-height: auto;
         overflow: visible;
@@ -923,14 +923,14 @@ body {
     
     .hero-content {
         max-width: 100%;
-        padding: 0 0.2rem;
+        padding: 0;
         box-sizing: border-box;
         width: 100%;
     }
     
     .hero h1 {
-        font-size: max(1.2rem, min(5vw, 1.6rem));
-        margin-bottom: 0.3rem;
+        font-size: 1.3rem;
+        margin-bottom: 0.2rem;
         line-height: 1.1;
         word-break: break-word;
         overflow-wrap: break-word;
@@ -938,16 +938,16 @@ body {
     }
     
     .hero p {
-        font-size: max(0.75rem, min(3.2vw, 0.85rem));
-        margin-bottom: 0.6rem;
+        font-size: 0.75rem;
+        margin-bottom: 0.4rem;
         line-height: 1.2;
         word-wrap: break-word;
         overflow-wrap: break-word;
     }
     
     .cta-button {
-        padding: 0.6rem 1rem;
-        font-size: 0.75rem;
+        padding: 0.5rem 0.9rem;
+        font-size: 0.65rem;
         white-space: nowrap;
         min-width: auto;
     }
@@ -1182,30 +1182,35 @@ body {
     
     .hero {
         padding: 0.8rem 0.5rem;
-        gap: 0.4rem;
-        margin-bottom: 0.6rem;
+        gap: 0.3rem;
+        margin-bottom: 0.5rem;
         border-radius: 8px;
     }
     
     .hero-content {
-        padding: 0 0.1rem;
+        padding: 0;
     }
     
     .hero h1 {
-        font-size: max(1rem, min(5.5vw, 1.2rem));
-        margin-bottom: 0.2rem;
+        font-size: 1.1rem;
+        margin-bottom: 0.15rem;
         line-height: 1.05;
+        font-weight: 700;
     }
     
     .hero p {
-        font-size: max(0.7rem, min(3.5vw, 0.7rem));
-        margin-bottom: 0.4rem;
-        line-height: 1.1;
+        font-size: 0.65rem;
+        margin-bottom: 0.25rem;
+        line-height: 1.15;
     }
     
     .cta-button {
-        padding: 0.4rem 0.75rem;
-        font-size: 0.6rem;
+        padding: 0.4rem 0.65rem;
+        font-size: 0.55rem;
+    }
+    
+    .hero-image {
+        display: none;
     }
     
     .container {
