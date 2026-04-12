@@ -3,17 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard PKL - Portal Tugas Magang</title>
+    <title>My Blog - Berbagi Inspirasi dan Pengetahuan</title>
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
     
-    <link rel="stylesheet" href="style.css?t=20260414">
-    
-    <!-- jsPDF untuk generate PDF -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <link rel="stylesheet" href="style.css?t=20260412">
 </head>
 <body>
     <!-- Background Animated Shapes -->
@@ -24,320 +21,106 @@
     <!-- Navigation Bar -->
     <nav class="navbar">
         <div class="navbar-container">
-            <div class="logo">📚 Laporan PKL</div>
+            <div class="logo">✍️ My Website</div>
+            <div class="nav-center">
+                <a href="#home" class="nav-link active">Beranda</a>
+                <a href="#blog" class="nav-link">Blog</a>
+                <a href="#about" class="nav-link">Tentang</a>
+                <a href="#contact" class="nav-link">Kontak</a>
+            </div>
             <div class="nav-right">
-                <button class="notification-btn">🔔</button>
-                <button class="profile-btn" id="profileBtn">
-                    <img src="Karakter.jpg" alt="Profile" class="nav-avatar">
-                    <span>Profil</span>
-                </button>
+                <input type="text" class="search-box" id="searchBox" placeholder="Cari artikel...">
+                <button class="theme-toggle" id="themeToggle">🌙</button>
             </div>
         </div>
     </nav>
 
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Selamat Datang Di Website Frisyilia</h1>
+            <p>Berbagi cerita, Ide, dan Inspirasi melalui artikel-artikel menarik</p>
+            <button class="cta-button" onclick="document.getElementById('blog').scrollIntoView({behavior: 'smooth'})">Baca Artikel</button>
+        </div>
+        <div class="hero-image">📖</div>
+    </section>
+
     <!-- Main Container -->
     <div class="container">
-        <!-- Sidebar -->
-        <aside class="sidebar">
-            <div class="menu-item active">Dashboard</div>
-            <div class="menu-item">Tugas Saya</div>
-            <div class="menu-item">Laporan</div>
-            <div class="menu-item">Pengaturan</div>
-        </aside>
-
         <!-- Main Content -->
-        <main class="content">
-            <!-- Dashboard Page -->
-            <div id="dashboardPage" class="page-content active">
-                <!-- Welcome Section -->
-                <div class="welcome-section">
-                    <div class="welcome-text">
-                        <h1>Halo, <span id="userName">Frisyilia Febrina</span>! 👋</h1>
-                        <p>Selamat datang di profile laporan pkl.</p>
-                    </div>
-                    <div class="welcome-avatar">
-                        <img src="Karakter.jpg" alt="Avatar">
+        <main class="content" id="blog">
+            <!-- Featured Post -->
+            <section class="featured-section">
+                <div id="featuredPost" class="featured-post"></div>
+            </section>
+
+            <!-- Posts Grid -->
+            <section class="posts-section">
+                <h2>Artikel Terbaru</h2>
+                <div class="posts-grid" id="postsGrid"></div>
+            </section>
+            <!-- Category Section -->
+            <section class="category-section">
+                <h3>Kategori</h3>
+                <div class="category-tags" id="categoryTags"></div>
+            </section>
+
+            <!-- About Section -->
+            <section class="about-section" id="about">
+                <h2>Tentang Saya</h2>
+                <div class="about-content">
+                    <img src="Karakter.jpg" alt="Author" class="about-image">
+                    <div class="about-text">
+                        <h3>Selamat Datang 👋</h3>
+                        <p>website ini adalah tempat saya berbagi pengetahuan, pengalaman, dan inspirasi seputar pembelajaran dan pengembangan diri. Semoga artikel-artikel di sini bermanfaat bagi Anda.</p>
+                        <p>Terima kasih telah mengunjungi. Jangan ragu untuk bertanya jika masih ada yang membingungkan di setiap artikel.</p>
                     </div>
                 </div>
+            </section>
 
-                <!-- Stats Section -->
-                <div class="stats-grid">
-                    <div class="stat-card total" onclick="openStatModal('all')">
-                        <div class="stat-number">12</div>
-                        <div class="stat-label">Total Tugas</div>
-                        <div class="stat-icon">📋</div>
+            <!-- Contact Section -->
+            <section class="contact-section" id="contact">
+                <h2>Hubungi Saya</h2>
+                <form class="contact-form" id="contactForm">
+                    <div class="form-group">
+                        <input type="text" id="contactName" placeholder="Nama Anda" value="Frisyilia Febrina" required>
                     </div>
-                    <div class="stat-card completed" onclick="openStatModal('selesai')">
-                        <div class="stat-number">10</div>
-                        <div class="stat-label">Selesai</div>
-                        <div class="stat-icon">✅</div>
+                    <div class="form-group">
+                        <input type="email" id="contactEmail" placeholder="Email Anda" value="frisyilia25febrina@gmail.com" required>
                     </div>
-                    <div class="stat-card pending" onclick="openStatModal('pending')">
-                        <div class="stat-number">2</div>
-                        <div class="stat-label">Sedang Dikerjakan</div>
-                        <div class="stat-icon">⏳</div>
+                    <div class="form-group">
+                        <input type="tel" id="contactPhone" placeholder="No Telepon Anda" value="0857-2502-8988" required>
                     </div>
-                    <div class="stat-card rejected" onclick="openStatModal('ditolak')">
-                        <div class="stat-number">0</div>
-                        <div class="stat-label">Ditolak</div>
-                        <div class="stat-icon">❌</div>
-                    </div>
-                </div>
-
-                <!-- Tasks Section -->
-                <div class="tasks-section">
-                    <div class="section-header">
-                        <h2>Daftar Tugas Magang</h2>
-                        <button class="btn-add-task">+ Tambah Tugas Baru</button>
-                    </div>
-
-                    <div class="tasks-list" id="tasksList">
-                        <!-- Task items akan di-generate dengan JavaScript -->
-                    </div>
-
-                    <!-- Pagination -->
-                    <div class="pagination">
-                        <button class="page-btn">❮</button>
-                        <button class="page-btn active">1</button>
-                        <button class="page-btn">2</button>
-                        <button class="page-btn">3</button>
-                        <button class="page-btn">❯</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Tugas Saya Page -->
-            <div id="tugasPage" class="page-content">
-                <div class="page-header">
-                    <h2>📋 Tugas Saya</h2>
-                    <p>Daftar lengkap semua tugas yang ditugaskan kepada Anda</p>
-                </div>
-
-                <div class="filter-section">
-                    <button class="filter-btn active" data-filter="all">Semua</button>
-                    <button class="filter-btn" data-filter="selesai">Selesai</button>
-                    <button class="filter-btn" data-filter="pending">Pending</button>
-                    <button class="filter-btn" data-filter="ditolak">Ditolak</button>
-                </div>
-
-                <div class="tasks-list" id="tugasPageList">
-                    <!-- Task items akan di-generate dengan JavaScript -->
-                </div>
-            </div>
-
-            <!-- Laporan Page -->
-            <div id="laporanPage" class="page-content">
-                <div class="page-header">
-                    <div style="display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 1rem;">
-                        <div>
-                            <h2>📊 Laporan PKL</h2>
-                            <p>Ringkasan dan analisis progress magang Anda</p>
-                        </div>
-                        <div class="report-user-info">
-                            <img src="Karakter.jpg" alt="Report User" class="report-user-avatar">
-                            <div>
-                                <h4 style="margin:0; font-size: 0.95rem;">Frisyilia Febrina</h4>
-                                <span style="font-size: 0.75rem; color: var(--text-muted);">Internship Dashboard</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="report-container">
-                    <!-- Report Stats Grid -->
-                    <div class="report-stats-grid">
-                        <div class="report-stat-item">
-                            <span class="report-stat-label">Total Tugas</span>
-                            <span class="report-stat-value" id="reportTotal">0</span>
-                        </div>
-                        <div class="report-stat-item">
-                            <span class="report-stat-label">Selesai</span>
-                            <span class="report-stat-value" id="reportCompleted">0</span>
-                        </div>
-                        <div class="report-stat-item">
-                            <span class="report-stat-label">Pending</span>
-                            <span class="report-stat-value" id="reportPending">0</span>
-                        </div>
-                        <div class="report-stat-item">
-                            <span class="report-stat-label">Ditolak</span>
-                            <span class="report-stat-value" id="reportRejected">0</span>
-                        </div>
-                    </div>
-                    
-                    <div class="report-card">
-                        <h3>Progress Keseluruhan</h3>
-                        <div class="progress-bar">
-                            <div class="progress-fill" id="progressFill"></div>
-                        </div>
-                        <p class="progress-text"><span id="progressPercent">0</span>% Selesai</p>
-                    </div>
-
-                    <div class="report-card">
-                        <h3>Ringkasan Harian</h3>
-                        <div class="timeline">
-                            <div class="timeline-item">
-                                <div class="timeline-date">Hari Ini</div>
-                                <div class="timeline-content">
-                                    <strong><span id="todayCount">0</span> tugas</strong> sedang dikerjakan
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="report-card">
-                        <h3>📋 Daftar Tugas Detail</h3>
-                        <div id="reportTasksList" style="margin-top: 1rem;">
-                            <!-- Task list akan di-generate dengan JavaScript -->
-                        </div>
-                    </div>
-
-                    <!-- Download Actions -->
-                    <!-- <div class="report-actions">
-                        <button class="btn-download" id="downloadPdfBtn">📄 Download PDF</button>
-                    </div> -->
-                </div>
-            </div>
-
-            <!-- Pengaturan Page -->
-            <div id="pengaturanPage" class="page-content">
-                <div class="page-header">
-                    <h2>⚙️ Pengaturan</h2>
-                    <p>Kelola preferensi dan pengaturan akun Anda</p>
-                </div>
-
-                <div class="settings-container">
-                    <div class="settings-card">
-                        <h3>Informasi Akun</h3>
-                        <div class="setting-profile">
-                            <img src="Karakter.jpg" alt="Profile Large" class="setting-avatar">
-                            <div class="setting-profile-info">
-                                <h4>Frisyilia Febrina</h4>
-                                <p>frisyilia25febrina@gmail.com</p>
-                            </div>
-                        </div>
-                        <div class="setting-item">
-                            <label>Nama Lengkap</label>
-                            <input type="text" id="settingName" value="Frisyilia Febrina">
-                        </div>
-                        <div class="setting-item">
-                            <label>Email</label>
-                            <input type="email" id="settingEmail" value="frisyilia25febrina@gmail.com">
-                        </div>
-                        <div class="setting-item">
-                            <label>Nomor Telepon</label>
-                            <input type="tel" id="settingPhone" placeholder="Masukkan nomor telepon">
-                        </div>
-                        <button class="btn-save-settings">💾 Simpan Perubahan</button>
-                    </div>
-
-                    <div class="settings-card">
-                        <h3>Keamanan</h3>
-                        <button class="btn-change-password">🔐 Ubah Password</button>
-                        <button class="btn-logout">🚪 Keluar</button>
-                    </div>
-                </div>
-            </div>
+                </form>
+            </section>
         </main>
     </div>
 
+
     <!-- Footer -->
     <footer class="footer">
-        <p>© 2026 Portal Magang Siswa | <a href="#">Hubungi Kami</a></p>
+        <div class="footer-content">
+            <p>&copy; 2026 My Blog. Semua hak dilindungi.</p>
+            <div class="social-links">
+                <a href="#" class="social-icon">📘</a>
+                <a href="#" class="social-icon">🐦</a>
+                <a href="#" class="social-icon">📷</a>
+            </div>
+        </div>
     </footer>
 
-    <!-- Modal Add/Edit Task -->
-    <div id="taskModal" class="modal">
-        <div class="modal-content">
+    <!-- Modal Post Detail -->
+    <div id="postModal" class="modal">
+        <div class="modal-content modal-large">
             <div class="modal-header">
-                <h2 id="modalTitle">Tambah Tugas Baru</h2>
-                <button class="modal-close" id="closeModal">&times;</button>
+                <button class="modal-close" id="closePostModal">&times;</button>
             </div>
-            <form id="taskForm">
-                <!-- <div class="form-group">
-                    <label for="taskIcon">Icon (Emoji):</label>
-                    <input type="text" id="taskIcon" placeholder="🎨" maxlength="2" required>
-                </div> -->
-                <div class="form-group">
-                    <label for="taskTitle">Judul Tugas:</label>
-                    <input type="text" id="taskTitle" placeholder="Masukkan judul tugas" required>
-                </div>
-                <div class="form-group">
-                    <label for="taskDesc">Deskripsi:</label>
-                    <textarea id="taskDesc" placeholder="Masukkan deskripsi tugas" rows="3" required></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="taskStatus">Status:</label>
-                    <select id="taskStatus" required>
-                        <option value="selesai">Selesai</option>
-                        <option value="pending">Pending</option>
-                        <option value="ditolak">Ditolak</option>
-                    </select>
-                </div>
-                <div class="form-actions">
-                    <button type="submit" class="btn-save">Simpan</button>
-                    <button type="button" class="btn-cancel" id="cancelBtn">Batal</button>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <!-- Modal Delete Confirmation -->
-    <div id="deleteModal" class="modal">
-        <div class="modal-content modal-small">
-            <div class="modal-header">
-                <h2>Hapus Tugas</h2>
-                <button class="modal-close" id="closeDeleteModal">&times;</button>
-            </div>
-            <p id="deleteMessage">Apakah Anda yakin ingin menghapus tugas ini?</p>
-            <div class="form-actions">
-                <button id="confirmDelete" class="btn-delete">Hapus</button>
-                <button id="cancelDelete" class="btn-cancel">Batal</button>
+            <div id="postModalContent" class="post-detail">
+                <!-- Post detail akan di-generate dengan JavaScript -->
             </div>
         </div>
     </div>
 
-    <!-- Modal Stat Details -->
-    <div id="statModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 id="statModalTitle">Detail Tugas</h2>
-                <button class="modal-close" id="closeStatModal">&times;</button>
-            </div>
-            <div id="statModalContent" class="stat-modal-content">
-                <!-- Content akan di-generate dengan JavaScript -->
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal Change Password -->
-    <div id="passwordModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2>🔐 Ubah Password</h2>
-                <button class="modal-close" id="closePasswordModal">&times;</button>
-            </div>
-            <form id="passwordForm">
-                <div class="form-group">
-                    <label for="newPassword">Password Baru:</label>
-                    <input type="password" id="newPassword" placeholder="Masukkan password baru (minimal 6 karakter)" required>
-                </div>
-                <div class="form-group">
-                    <label for="confirmPassword">Konfirmasi Password:</label>
-                    <input type="password" id="confirmPassword" placeholder="Konfirmasi password baru" required>
-                </div>
-                <div id="passwordMessage" class="password-message"></div>
-                <div class="form-actions">
-                    <button type="button" class="btn-cancel" id="cancelPasswordBtn">Batal</button>
-                    <button type="submit" class="btn-save">Perbarui Password</button>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <script>
-        // Data will be initialized in script.js
-    </script>
-
-    <script src="script.js?t=20260414"></script>
+    <script src="script-blog.js?t=20260412"></script>
 </body>
 </html>
