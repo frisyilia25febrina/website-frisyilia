@@ -110,6 +110,196 @@
             font-size: 12px;
             margin-top: 5px;
         }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            body {
+                padding: 15px;
+            }
+            table th, table td {
+                padding: 10px;
+                font-size: 14px;
+            }
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+                font-size: 14px;
+            }
+            .test-container {
+                padding: 15px;
+                margin-bottom: 15px;
+            }
+            h1 {
+                font-size: 22px;
+                margin: 10px 0;
+                text-align: center;
+            }
+            h2 {
+                font-size: 18px;
+                padding-bottom: 8px;
+            }
+            table {
+                font-size: 13px;
+            }
+            table th, table td {
+                padding: 8px;
+            }
+            button {
+                padding: 8px 15px;
+                font-size: 14px;
+                margin: 5px 3px 5px 0;
+                width: 100%;
+            }
+            input, textarea, select {
+                padding: 10px;
+                font-size: 16px;
+                width: 100%;
+            }
+            .form-group {
+                margin-bottom: 12px;
+            }
+            label {
+                font-size: 14px;
+                margin-bottom: 5px;
+            }
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 8px;
+            }
+            .stat-box {
+                padding: 12px;
+            }
+            .stat-box .value {
+                font-size: 20px;
+            }
+            .stat-box .label {
+                font-size: 11px;
+                margin-top: 3px;
+            }
+            .test-result {
+                padding: 8px;
+                margin: 8px 0;
+                font-size: 13px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 8px;
+                font-size: 13px;
+            }
+            .test-container {
+                padding: 12px;
+                margin-bottom: 10px;
+            }
+            h1 {
+                font-size: 18px;
+                margin: 8px 0;
+            }
+            h2 {
+                font-size: 16px;
+                padding-bottom: 6px;
+                margin-bottom: 10px;
+            }
+            table {
+                font-size: 12px;
+                margin-top: 8px;
+            }
+            table th, table td {
+                padding: 6px;
+                font-size: 11px;
+                text-align: left;
+                overflow-x: auto;
+            }
+            button {
+                padding: 8px 12px;
+                font-size: 13px;
+                margin: 4px 0;
+                width: 100%;
+                box-sizing: border-box;
+                display: block;
+            }
+            input, textarea, select {
+                padding: 8px;
+                font-size: 16px;
+                width: 100%;
+                box-sizing: border-box;
+            }
+            .form-group {
+                margin-bottom: 10px;
+            }
+            label {
+                font-size: 13px;
+                margin-bottom: 4px;
+            }
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 6px;
+            }
+            .stat-box {
+                padding: 10px;
+            }
+            .stat-box .value {
+                font-size: 18px;
+            }
+            .stat-box .label {
+                font-size: 10px;
+                margin-top: 2px;
+            }
+            .test-result {
+                padding: 6px;
+                margin: 6px 0;
+                font-size: 12px;
+                border-left: 3px solid;
+            }
+        }
+
+        @media (max-width: 360px) {
+            body {
+                padding: 5px;
+                font-size: 12px;
+            }
+            .test-container {
+                padding: 10px;
+                margin-bottom: 8px;
+            }
+            h1 {
+                font-size: 16px;
+                margin: 5px 0;
+            }
+            h2 {
+                font-size: 14px;
+                padding-bottom: 5px;
+                margin-bottom: 8px;
+            }
+            table th, table td {
+                padding: 5px;
+                font-size: 10px;
+            }
+            button {
+                padding: 6px 10px;
+                font-size: 12px;
+                margin: 3px 0;
+            }
+            .stats {
+                grid-template-columns: 1fr;
+                gap: 5px;
+            }
+            .stat-box {
+                padding: 8px;
+            }
+            .stat-box .value {
+                font-size: 16px;
+            }
+            .stat-box .label {
+                font-size: 9px;
+            }
+        }
     </style>
 </head>
 <body>

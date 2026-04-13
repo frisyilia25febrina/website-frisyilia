@@ -21,7 +21,7 @@ const blogs = [
         id: 2,
         title: "Membuat Topologi Star",
         excerpt: "Pelajari Topologi Star Dengan Cisco Paket Tracer.",
-        category: "Tutorial",
+        category: "Cisco",
         author: "Frisyilia Febrina",
         date: "09 April 2026",
         readTime: "7 min read",
@@ -42,70 +42,101 @@ const blogs = [
     {
         id: 3,
         title: "Membuat Topologi Ring",
-        excerpt: "Pelajari fitur-fitur modern JavaScript yang akan membuat coding lebih efisien.",
-        category: "Programming",
+        excerpt: "Pelajari Topologi Ring Dengan Cisco Paket Tracer.",
+        category: "Cisco",
         author: "Frisyilia Febrina",
         date: "8 April 2026",
         readTime: "8 min read",
         emoji: "⚡",
-        content: `<p>JavaScript ES6 (ECMAScript 2015) membawa banyak perubahan yang signifikan. Fitur-fitur baru seperti arrow functions, destructuring, dan async/await membuat JavaScript lebih mudah digunakan.</p>
+        content: `<p>.</p>
         
-        <h3>Arrow Functions</h3>
+        <h3>langkah-langkah</h3>membutuhkan 5 buah switch, dan tambahkan pc masing masing ke setiap switc. dan sambungkan setiap switch ke pc masing masing setelah itu kita sambungkan seluruh switch hingga membentuk ring atau lingkaran. lalu kita klik pc terus ke desktop lalu ke ip configuration ketik 192.168.10.1 dan subnet nya yang otomatis. selanjutnya kita lakuin ke setiap pe nya hanya dibedakan angka belakang nya saja ganti setiap pc nya bertambah satu angka misalkan pc 2 jadi 192.168.10.2 dan setiap ganti po bertambah satu angka-setelah itu kita lakukan pengecekan ke seluruh pc yang ada kalo statusnya successful tandannya berhasil.
         <p>Arrow functions adalah cara yang lebih singkat dan elegan untuk menulis function biasa. Tidak hanya sintaksnya lebih ringkas, tapi juga otomatis binding 'this'.</p>
         
-        <h3>Async/Await</h3>
-        <p>Async/await membuat handling asynchronous code menjadi lebih mudah dan lebih seperti synchronous code yang biasa kita tulis. Ini adalah cara terbaik untuk handling promises di JavaScript modern.</p>`
+        <h3>Kelebihan Dan Kekurangan Topologi Ring</h3>
+        <p>Kelebihan
+Minim collision data
+Performa stabil saat traffic tinggi
+Setiap node punya hak akses yang sama.
+Kekurangan Jika satu kabel/node rusak, jaringan bisa terganggu
+Penambahan/perubahan node bisa mengganggu jaringan
+Troubleshooting bisa sulit jika tidak pakai sistem dual ring.</p>`
     },
     {
         id: 4,
-        title: "Responsive Web Design: Panduan Lengkap",
-        excerpt: "Buat website yang terlihat sempurna di semua ukuran layar.",
-        category: "Design",
+        title: "Membuat Topologi Mesh",
+        excerpt: "Pelajari Topologi Mesh Dengan Cisco Paket Tracer.",
+        category: "Cisco",
         author: "Frisyilia Febrina",
         date: "5 April 2026",
         readTime: "6 min read",
         emoji: "📱",
-        content: `<p>Di era sekarang, kebanyakan orang mengakses internet melalui smartphone. Oleh karena itu, website yang responsive adalah keharusan, bukan pilihan.</p>
+        content: `<p>membutuhkan 5 buah switc, dan kita tambahkan kan pc di masing masing switch yang ada. kita hubungkan switch ke pc nya masing masing, lalu kita hubungkan seluruh switch yang ada dan kita pastikan seluruh switch telah terhubung satu sama lain, setelah semua switch terhubung kita klik pc nya terus ke desktop lalu ke ip configuration masukkin ip nya 192.168.1.1 subnetmask nya 255.255.255.0 kita terapkan ke seluruh pc yang ada tapi akhiran nya kita ganti ke angka selanjutnya misalnya 192.168.1.2 dan seterusnya sampe semua pe terisi ip nya.lalu kita lakukan pengecekan dari pc1 ke pc2 dan kita lakukan ke seluruh pc yang ada.kalo semua nya sudah successful artinya berhasil..</p>
         
-        <h3>Mobile First Approach</h3>
-        <p>Mulai desain dari mobile terlebih dahulu, kemudian expand ke tablet dan desktop. Ini akan membuat design process menjadi lebih efisien.</p>
+        <h3>Kelebihan Dan Kekurangan Topologi Mesh</h3>
+        <p> Kelebihan
+
+✔ Sangat handal (reliable)
+✔ Tidak mudah down
+✔ Performa tinggi
+
+ Kekurangan
+
+✖ Biaya sangat mahal (butuh banyak kabel & port)
+✖ Instalasi rumit
+✖ Tidak efisien untuk jaringan kecil.</p>
         
-        <h3>Media Queries</h3>
-        <p>Media queries memungkinkan kita untuk mengaplikasikan CSS yang berbeda berdasarkan ukuran layar. Dengan media queries yang tepat, kita bisa membuat layout yang responsive.</p>`
+        <h3>kegunaan Topologi Mesh</h3>
+        <p>Topologi mesh digunakan untuk jaringan yang membutuhkan keamanan tinggi, kestabilan maksimal, dan minim gangguan, meskipun biayanya mahal..</p>`
     },
     {
         id: 5,
-        title: "Membangun REST API dengan Node.js dan Express",
-        excerpt: "Tutorial membuat backend API yang robust dan scalable.",
-        category: "Backend",
+        title: "Mengsetup DHCP Server",
+        excerpt: "Pelajari cara mengatur DHCP Server untuk memberikan alamat IP secara otomatis kepada perangkat jaringan.",
+        category: "Linux Debian 8",
         author: "Frisyilia Febrina",
         date: "2 April 2026",
         readTime: "10 min read",
         emoji: "🔧",
-        content: `<p>Node.js dan Express adalah kombinasi yang powerful untuk membuat REST API. Dengan kedua framework ini, kita bisa membuat API yang cepat, scalable, dan mudah di-maintain.</p>
+        content: `<p>1.sebelum setting dhcp server kita edit IP ke static terlebih dahulu (nano /etc/network/interfaces)
+2.atur IP ke static sesuai keinginan kita,kalo saya sendiri pake IP static nya 30.30.30.1/24
+saya pake adapter network nya :Host & Only
+3.setelah itu saya restart network nya (/etc/init.d/networking restart)
+4.setelah itu saya cek menggunakan ip a untuk memastikan apakah ip sudah benar
+5.setelah cek ip dan ip nya sudah sesuai,ini langkah pertama yang saya lakukan adalah meng update sampai selesai (apt-get update)
+6.habis itu saya install isc-dhcp-server sampai selesai (apt-install isc-dhcp-server)
+7.ping 30.30.30.1 kalo TTL berhasil
+8.ketik nano /etc/dhcp/dhcpd.conf edit sesuai dengan ip yang kita pakai.
+9.service isc-dhcp-server status kalo running berhasil
+10.Kalo ip bisa di ping di cmd tandanya sudah berjalan,atau bisa juga cek di control panel,ip nya akan otomatis masuk ke control panel.
+11.selesai
+.</p>
         
-        <h3>Setup Project</h3>
-        <p>Pertama, install Node.js di komputer kamu. Kemudian, buat folder project baru dan inisialisasi npm. Install express dan dependency lainnya.</p>
+        <h3>Kegunaan DHCP Server</h3>
+        <p>DHCP Server digunakan untuk memberikan alamat IP secara otomatis kepada perangkat jaringan, sehingga pengguna tidak perlu mengatur alamat IP secara manual.</p>
         
-        <h3>Membuat Endpoints</h3>
-        <p>Express membuat membuat endpoints menjadi sangat mudah. Cukup define route dan handler function, kamu sudah bisa membuat API endpoint yang berfungsi.</p>`
+        <h3>Kelebihan Dan Kekurangan DHCP Server</h3>
+        <p>Kelebihan:fleksibel,dan manajement IP lebih mudah. Kekurangan:Troubleshooting lebih susah,Kurang cocok untuk server penting.</p>`
     },
     {
         id: 6,
-        title: "Database dan SQL: Pengenalan untuk Web Developer",
-        excerpt: "Pelajari dasar-dasar database dan SQL untuk menyimpan data aplikasi.",
-        category: "Backend",
+        title: "SSH Server",
+        excerpt: "Pelajari cara mengatur SSH Server .",
+        category: "Linux Debian 8",
         author: "Frisyilia Febrina",
         date: "31 Maret 2026",
         readTime: "9 min read",
         emoji: "🗄️",
-        content: `<p>Setiap aplikasi membutuhkan database untuk menyimpan data. SQL adalah bahasa standard untuk mengelola database relasional.</p>
+        content: `<p>1.langkah pertama yang saya lakukan untuk menginstall ssh server adalah meng update sampai selesai (apt-get update)
+2.terus di install (apt-get install openssh-server)
+3.service ssh status setelah running
+4.ke cmd masukkin ssh user@ip nya,password nya,lalu masuk pake (su).</p>
         
-        <h3>CRUD Operations</h3>
-        <p>CRUD (Create, Read, Update, Delete) adalah operasi dasar yang paling sering dilakukan pada database. Kuasai keempat operasi ini dengan baik.</p>
+        <h3>Kegunaan SSH Server</h3>
+        <p>SSH Server digunakan untuk mengizinkan akses jarak jauh ke sistem komputer secara aman. Dengan SSH, pengguna dapat menjalankan perintah dan mentransfer file secara enkripsi.</p>
         
-        <h3>Normalisasi Database</h3>
-        <p>Normalisasi database adalah proses mengorganisir data untuk mengurangi redundansi. Dengan normalisasi yang baik, database akan lebih efisien dan mudah di-maintain.</p>`
+    <h3>Kekurangan Dan Kelebihan SSH Server</h3>
+        <p>Kelebihan: Akses jarak jauh yang aman, enkripsi data, dan kemampuan untuk menjalankan perintah secara remote. Kekurangan: Konfigurasi yang kompleks, risiko keamanan jika tidak diatur dengan benar, dan potensi serangan brute force.</p>`
     }
 ];
 
